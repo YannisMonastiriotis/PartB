@@ -1,0 +1,993 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PartBMainModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Assignment">
+          <Key>
+            <PropertyRef Name="AssignmentID" />
+          </Key>
+          <Property Name="AssignmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Submision Date Time" Type="date" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Title" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="Assignment_Mark1">
+          <Key>
+            <PropertyRef Name="AssignmentID" />
+            <PropertyRef Name="MarkID" />
+          </Key>
+          <Property Name="AssignmentID" Type="int" Nullable="false" />
+          <Property Name="MarkID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="Start Date" Type="date" />
+          <Property Name="Title" Type="varchar" MaxLength="40" />
+          <Property Name="CourseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="End Date" Type="date" />
+        </EntityType>
+        <EntityType Name="Course_Assignment">
+          <Key>
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="AssignmentID" />
+          </Key>
+          <Property Name="CourseID" Type="int" Nullable="false" />
+          <Property Name="AssignmentID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HeadTrainer">
+          <Key>
+            <PropertyRef Name="HeadTrainerID" />
+            <PropertyRef Name="PrivateSchoolID" />
+          </Key>
+          <Property Name="HeadTrainerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subject" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="PrivateSchoolID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="ManagerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AnnualPayment" Type="money" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mark">
+          <Key>
+            <PropertyRef Name="MarkID" />
+          </Key>
+          <Property Name="MarkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Oral Mark" Type="float" />
+          <Property Name="Write Mark" Type="float" />
+          <Property Name="Total Mark" Type="float" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Amount" Type="money" />
+          <Property Name="Payment Type" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="PaymentStatus">
+          <Key>
+            <PropertyRef Name="PaymentIDCode" />
+          </Key>
+          <Property Name="PaymentStatusDescription" Type="bit" />
+          <Property Name="PaymentID" Type="int" Nullable="false" />
+          <Property Name="PaymentIDCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentStatusCode" Type="float" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="15" />
+          <Property Name="FirstName" Type="varchar" MaxLength="40" />
+          <Property Name="Address" Type="varchar" MaxLength="40" />
+          <Property Name="PhoneNum" Type="varchar" MaxLength="14" />
+          <Property Name="BirthDate" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="Private School">
+          <Key>
+            <PropertyRef Name="PrivateSchoolID" />
+          </Key>
+          <Property Name="PrivateSchoolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Inventory" Type="text" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" />
+          <Property Name="ManagerID" Type="int" Nullable="false" />
+          <Property Name="Expenses" Type="money" />
+        </EntityType>
+        <EntityType Name="Stream">
+          <Key>
+            <PropertyRef Name="StreamID" />
+          </Key>
+          <Property Name="Stream Name" Type="varchar" MaxLength="40" />
+          <Property Name="Stream Type" Type="varchar" MaxLength="40" />
+          <Property Name="StreamID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseID" Type="int" Nullable="false" />
+          <Property Name="StreamCode" Type="float" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tuition  Fees" Type="varchar" MaxLength="255" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="SignupNo" Type="float" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Student_Course">
+          <Key>
+            <PropertyRef Name="StudentID" />
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="CourseID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student_Payment1">
+          <Key>
+            <PropertyRef Name="StudentID" />
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="PaymentID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Trainer">
+          <Key>
+            <PropertyRef Name="TrainerID" />
+          </Key>
+          <Property Name="TrainerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subject" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="HeadTrainerID" Type="int" />
+          <Property Name="PrivateSchoolID" Type="int" />
+        </EntityType>
+        <EntityType Name="Trainer_Course">
+          <Key>
+            <PropertyRef Name="TrainerID" />
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="TrainerID" Type="int" Nullable="false" />
+          <Property Name="CourseID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="Assignment_Assignment_Mark1">
+          <End Role="Assignment" Type="Self.Assignment" Multiplicity="1" />
+          <End Role="Assignment_Mark1" Type="Self.Assignment_Mark1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assignment">
+              <PropertyRef Name="AssignmentID" />
+            </Principal>
+            <Dependent Role="Assignment_Mark1">
+              <PropertyRef Name="AssignmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Assignment_Course_Assignment">
+          <End Role="Assignment" Type="Self.Assignment" Multiplicity="1" />
+          <End Role="Course_Assignment" Type="Self.Course_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assignment">
+              <PropertyRef Name="AssignmentID" />
+            </Principal>
+            <Dependent Role="Course_Assignment">
+              <PropertyRef Name="AssignmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Course_Course_Assignment">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Course_Assignment" Type="Self.Course_Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="Course_Assignment">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Course_Stream">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Stream" Type="Self.Stream" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="Stream">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Course_Student_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Student_Course" Type="Self.Student_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="Student_Course">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Course_Trainer_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Trainer_Course" Type="Self.Trainer_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="Trainer_Course">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HeadTrainer_Trainer">
+          <End Role="HeadTrainer" Type="Self.HeadTrainer" Multiplicity="0..1" />
+          <End Role="Trainer" Type="Self.Trainer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeadTrainer">
+              <PropertyRef Name="HeadTrainerID" />
+              <PropertyRef Name="PrivateSchoolID" />
+            </Principal>
+            <Dependent Role="Trainer">
+              <PropertyRef Name="HeadTrainerID" />
+              <PropertyRef Name="PrivateSchoolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Mark_Assignment_Mark1">
+          <End Role="Mark" Type="Self.Mark" Multiplicity="1" />
+          <End Role="Assignment_Mark1" Type="Self.Assignment_Mark1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mark">
+              <PropertyRef Name="MarkID" />
+            </Principal>
+            <Dependent Role="Assignment_Mark1">
+              <PropertyRef Name="MarkID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Payment_PaymentStatus">
+          <End Role="Payment" Type="Self.Payment" Multiplicity="1" />
+          <End Role="PaymentStatus" Type="Self.PaymentStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment">
+              <PropertyRef Name="PaymentID" />
+            </Principal>
+            <Dependent Role="PaymentStatus">
+              <PropertyRef Name="PaymentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Payment_Student_Payment1">
+          <End Role="Payment" Type="Self.Payment" Multiplicity="1" />
+          <End Role="Student_Payment1" Type="Self.Student_Payment1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment">
+              <PropertyRef Name="PaymentID" />
+            </Principal>
+            <Dependent Role="Student_Payment1">
+              <PropertyRef Name="PaymentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Person_HeadTrainer">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="HeadTrainer" Type="Self.HeadTrainer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="HeadTrainer">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Person_Manager">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Person_Student">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Person_Trainer">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Trainer" Type="Self.Trainer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Trainer">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Private School_HeadTrainer">
+          <End Role="Private School" Type="Self.Private School" Multiplicity="1" />
+          <End Role="HeadTrainer" Type="Self.HeadTrainer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Private School">
+              <PropertyRef Name="PrivateSchoolID" />
+            </Principal>
+            <Dependent Role="HeadTrainer">
+              <PropertyRef Name="PrivateSchoolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Student_Student_Course">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Student_Course" Type="Self.Student_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="Student_Course">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Student_Student_Payment1">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Student_Payment1" Type="Self.Student_Payment1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="Student_Payment1">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Trainer_Trainer_Course">
+          <End Role="Trainer" Type="Self.Trainer" Multiplicity="1" />
+          <End Role="Trainer_Course" Type="Self.Trainer_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trainer">
+              <PropertyRef Name="TrainerID" />
+            </Principal>
+            <Dependent Role="Trainer_Course">
+              <PropertyRef Name="TrainerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PartBMainModelStoreContainer">
+          <EntitySet Name="Assignment" EntityType="Self.Assignment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Assignment_Mark1" EntityType="Self.Assignment_Mark1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course_Assignment" EntityType="Self.Course_Assignment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HeadTrainer" EntityType="Self.HeadTrainer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mark" EntityType="Self.Mark" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentStatus" EntityType="Self.PaymentStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Private School" EntityType="Self.Private School" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stream" EntityType="Self.Stream" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student_Course" EntityType="Self.Student_Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student_Payment1" EntityType="Self.Student_Payment1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trainer" EntityType="Self.Trainer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trainer_Course" EntityType="Self.Trainer_Course" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Assignment_Assignment_Mark1" Association="Self.Assignment_Assignment_Mark1">
+            <End Role="Assignment" EntitySet="Assignment" />
+            <End Role="Assignment_Mark1" EntitySet="Assignment_Mark1" />
+          </AssociationSet>
+          <AssociationSet Name="Assignment_Course_Assignment" Association="Self.Assignment_Course_Assignment">
+            <End Role="Assignment" EntitySet="Assignment" />
+            <End Role="Course_Assignment" EntitySet="Course_Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="Course_Course_Assignment" Association="Self.Course_Course_Assignment">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Course_Assignment" EntitySet="Course_Assignment" />
+          </AssociationSet>
+          <AssociationSet Name="Course_Stream" Association="Self.Course_Stream">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Stream" EntitySet="Stream" />
+          </AssociationSet>
+          <AssociationSet Name="Course_Student_Course" Association="Self.Course_Student_Course">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Student_Course" EntitySet="Student_Course" />
+          </AssociationSet>
+          <AssociationSet Name="Course_Trainer_Course" Association="Self.Course_Trainer_Course">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Trainer_Course" EntitySet="Trainer_Course" />
+          </AssociationSet>
+          <AssociationSet Name="HeadTrainer_Trainer" Association="Self.HeadTrainer_Trainer">
+            <End Role="HeadTrainer" EntitySet="HeadTrainer" />
+            <End Role="Trainer" EntitySet="Trainer" />
+          </AssociationSet>
+          <AssociationSet Name="Mark_Assignment_Mark1" Association="Self.Mark_Assignment_Mark1">
+            <End Role="Mark" EntitySet="Mark" />
+            <End Role="Assignment_Mark1" EntitySet="Assignment_Mark1" />
+          </AssociationSet>
+          <AssociationSet Name="Payment_PaymentStatus" Association="Self.Payment_PaymentStatus">
+            <End Role="Payment" EntitySet="Payment" />
+            <End Role="PaymentStatus" EntitySet="PaymentStatus" />
+          </AssociationSet>
+          <AssociationSet Name="Payment_Student_Payment1" Association="Self.Payment_Student_Payment1">
+            <End Role="Payment" EntitySet="Payment" />
+            <End Role="Student_Payment1" EntitySet="Student_Payment1" />
+          </AssociationSet>
+          <AssociationSet Name="Person_HeadTrainer" Association="Self.Person_HeadTrainer">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="HeadTrainer" EntitySet="HeadTrainer" />
+          </AssociationSet>
+          <AssociationSet Name="Person_Manager" Association="Self.Person_Manager">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Manager" EntitySet="Manager" />
+          </AssociationSet>
+          <AssociationSet Name="Person_Student" Association="Self.Person_Student">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="Person_Trainer" Association="Self.Person_Trainer">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Trainer" EntitySet="Trainer" />
+          </AssociationSet>
+          <AssociationSet Name="Private School_HeadTrainer" Association="Self.Private School_HeadTrainer">
+            <End Role="Private School" EntitySet="Private School" />
+            <End Role="HeadTrainer" EntitySet="HeadTrainer" />
+          </AssociationSet>
+          <AssociationSet Name="Student_Student_Course" Association="Self.Student_Student_Course">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Student_Course" EntitySet="Student_Course" />
+          </AssociationSet>
+          <AssociationSet Name="Student_Student_Payment1" Association="Self.Student_Student_Payment1">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Student_Payment1" EntitySet="Student_Payment1" />
+          </AssociationSet>
+          <AssociationSet Name="Trainer_Trainer_Course" Association="Self.Trainer_Trainer_Course">
+            <End Role="Trainer" EntitySet="Trainer" />
+            <End Role="Trainer_Course" EntitySet="Trainer_Course" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PartBMainModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Assignment">
+          <Key>
+            <PropertyRef Name="AssignmentID" />
+          </Key>
+          <Property Name="AssignmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Submision_Date_Time" Type="DateTime" Precision="0" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Marks" Relationship="Self.Assignment_Mark1" FromRole="Assignment" ToRole="Mark" />
+          <NavigationProperty Name="Courses" Relationship="Self.Course_Assignment" FromRole="Assignment" ToRole="Course" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="Start_Date" Type="DateTime" Precision="0" />
+          <Property Name="Title" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="CourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="End_Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Streams" Relationship="Self.Course_Stream" FromRole="Course" ToRole="Stream" />
+          <NavigationProperty Name="Assignments" Relationship="Self.Course_Assignment" FromRole="Course" ToRole="Assignment" />
+          <NavigationProperty Name="Students" Relationship="Self.Student_Course" FromRole="Course" ToRole="Student" />
+          <NavigationProperty Name="Trainers" Relationship="Self.Trainer_Course" FromRole="Course" ToRole="Trainer" />
+        </EntityType>
+        <EntityType Name="HeadTrainer">
+          <Key>
+            <PropertyRef Name="HeadTrainerID" />
+            <PropertyRef Name="PrivateSchoolID" />
+          </Key>
+          <Property Name="HeadTrainerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="PrivateSchoolID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Trainers" Relationship="Self.HeadTrainer_Trainer" FromRole="HeadTrainer" ToRole="Trainer" />
+          <NavigationProperty Name="Person" Relationship="Self.Person_HeadTrainer" FromRole="HeadTrainer" ToRole="Person" />
+          <NavigationProperty Name="Private_School" Relationship="Self.Private_School_HeadTrainer" FromRole="HeadTrainer" ToRole="Private_School" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="ManagerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AnnualPayment" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.Person_Manager" FromRole="Manager" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Mark">
+          <Key>
+            <PropertyRef Name="MarkID" />
+          </Key>
+          <Property Name="MarkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Oral_Mark" Type="Double" />
+          <Property Name="Write_Mark" Type="Double" />
+          <Property Name="Total_Mark" Type="Double" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Assignments" Relationship="Self.Assignment_Mark1" FromRole="Mark" ToRole="Assignment" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Payment_Type" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PaymentStatus" Relationship="Self.Payment_PaymentStatus" FromRole="Payment" ToRole="PaymentStatus" />
+          <NavigationProperty Name="Students" Relationship="Self.Student_Payment1" FromRole="Payment" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="PaymentStatu">
+          <Key>
+            <PropertyRef Name="PaymentIDCode" />
+          </Key>
+          <Property Name="PaymentStatusDescription" Type="Boolean" />
+          <Property Name="PaymentID" Type="Int32" Nullable="false" />
+          <Property Name="PaymentIDCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentStatusCode" Type="Double" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Payment" Relationship="Self.Payment_PaymentStatus" FromRole="PaymentStatus" ToRole="Payment" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNum" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="BirthDate" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HeadTrainers" Relationship="Self.Person_HeadTrainer" FromRole="Person" ToRole="HeadTrainer" />
+          <NavigationProperty Name="Managers" Relationship="Self.Person_Manager" FromRole="Person" ToRole="Manager" />
+          <NavigationProperty Name="Students" Relationship="Self.Person_Student" FromRole="Person" ToRole="Student" />
+          <NavigationProperty Name="Trainers" Relationship="Self.Person_Trainer" FromRole="Person" ToRole="Trainer" />
+        </EntityType>
+        <EntityType Name="Private_School">
+          <Key>
+            <PropertyRef Name="PrivateSchoolID" />
+          </Key>
+          <Property Name="PrivateSchoolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Inventory" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ManagerID" Type="Int32" Nullable="false" />
+          <Property Name="Expenses" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="HeadTrainers" Relationship="Self.Private_School_HeadTrainer" FromRole="Private_School" ToRole="HeadTrainer" />
+        </EntityType>
+        <EntityType Name="Stream">
+          <Key>
+            <PropertyRef Name="StreamID" />
+          </Key>
+          <Property Name="Stream_Name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Stream_Type" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="StreamID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseID" Type="Int32" Nullable="false" />
+          <Property Name="StreamCode" Type="Double" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Course" Relationship="Self.Course_Stream" FromRole="Stream" ToRole="Course" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tuition__Fees" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="SignupNo" Type="Double" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Person" Relationship="Self.Person_Student" FromRole="Student" ToRole="Person" />
+          <NavigationProperty Name="Courses" Relationship="Self.Student_Course" FromRole="Student" ToRole="Course" />
+          <NavigationProperty Name="Payments" Relationship="Self.Student_Payment1" FromRole="Student" ToRole="Payment" />
+        </EntityType>
+        <EntityType Name="Trainer">
+          <Key>
+            <PropertyRef Name="TrainerID" />
+          </Key>
+          <Property Name="TrainerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="HeadTrainerID" Type="Int32" />
+          <Property Name="PrivateSchoolID" Type="Int32" />
+          <NavigationProperty Name="HeadTrainer" Relationship="Self.HeadTrainer_Trainer" FromRole="Trainer" ToRole="HeadTrainer" />
+          <NavigationProperty Name="Person" Relationship="Self.Person_Trainer" FromRole="Trainer" ToRole="Person" />
+          <NavigationProperty Name="Courses" Relationship="Self.Trainer_Course" FromRole="Trainer" ToRole="Course" />
+        </EntityType>
+        <Association Name="Course_Stream">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Stream" Type="Self.Stream" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="Stream">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HeadTrainer_Trainer">
+          <End Role="HeadTrainer" Type="Self.HeadTrainer" Multiplicity="0..1" />
+          <End Role="Trainer" Type="Self.Trainer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeadTrainer">
+              <PropertyRef Name="HeadTrainerID" />
+              <PropertyRef Name="PrivateSchoolID" />
+            </Principal>
+            <Dependent Role="Trainer">
+              <PropertyRef Name="HeadTrainerID" />
+              <PropertyRef Name="PrivateSchoolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Person_HeadTrainer">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="HeadTrainer" Type="Self.HeadTrainer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="HeadTrainer">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Private_School_HeadTrainer">
+          <End Role="Private_School" Type="Self.Private_School" Multiplicity="1" />
+          <End Role="HeadTrainer" Type="Self.HeadTrainer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Private_School">
+              <PropertyRef Name="PrivateSchoolID" />
+            </Principal>
+            <Dependent Role="HeadTrainer">
+              <PropertyRef Name="PrivateSchoolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Person_Manager">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Payment_PaymentStatus">
+          <End Role="Payment" Type="Self.Payment" Multiplicity="1" />
+          <End Role="PaymentStatus" Type="Self.PaymentStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment">
+              <PropertyRef Name="PaymentID" />
+            </Principal>
+            <Dependent Role="PaymentStatus">
+              <PropertyRef Name="PaymentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Person_Student">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Person_Trainer">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Trainer" Type="Self.Trainer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Trainer">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Assignment_Mark1">
+          <End Role="Assignment" Type="Self.Assignment" Multiplicity="*" />
+          <End Role="Mark" Type="Self.Mark" Multiplicity="*" />
+        </Association>
+        <Association Name="Course_Assignment">
+          <End Role="Assignment" Type="Self.Assignment" Multiplicity="*" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+        </Association>
+        <Association Name="Student_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+        </Association>
+        <Association Name="Student_Payment1">
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+        </Association>
+        <Association Name="Trainer_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <End Role="Trainer" Type="Self.Trainer" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="PartBMain" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Assignments" EntityType="Self.Assignment" />
+          <EntitySet Name="Courses" EntityType="Self.Course" />
+          <EntitySet Name="HeadTrainers" EntityType="Self.HeadTrainer" />
+          <EntitySet Name="Managers" EntityType="Self.Manager" />
+          <EntitySet Name="Marks" EntityType="Self.Mark" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="PaymentStatus" EntityType="Self.PaymentStatu" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="Private_Schools" EntityType="Self.Private_School" />
+          <EntitySet Name="Streams" EntityType="Self.Stream" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="Trainers" EntityType="Self.Trainer" />
+          <AssociationSet Name="Course_Stream" Association="Self.Course_Stream">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Stream" EntitySet="Streams" />
+          </AssociationSet>
+          <AssociationSet Name="HeadTrainer_Trainer" Association="Self.HeadTrainer_Trainer">
+            <End Role="HeadTrainer" EntitySet="HeadTrainers" />
+            <End Role="Trainer" EntitySet="Trainers" />
+          </AssociationSet>
+          <AssociationSet Name="Person_HeadTrainer" Association="Self.Person_HeadTrainer">
+            <End Role="Person" EntitySet="People" />
+            <End Role="HeadTrainer" EntitySet="HeadTrainers" />
+          </AssociationSet>
+          <AssociationSet Name="Private_School_HeadTrainer" Association="Self.Private_School_HeadTrainer">
+            <End Role="Private_School" EntitySet="Private_Schools" />
+            <End Role="HeadTrainer" EntitySet="HeadTrainers" />
+          </AssociationSet>
+          <AssociationSet Name="Person_Manager" Association="Self.Person_Manager">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Manager" EntitySet="Managers" />
+          </AssociationSet>
+          <AssociationSet Name="Payment_PaymentStatus" Association="Self.Payment_PaymentStatus">
+            <End Role="Payment" EntitySet="Payments" />
+            <End Role="PaymentStatus" EntitySet="PaymentStatus" />
+          </AssociationSet>
+          <AssociationSet Name="Person_Student" Association="Self.Person_Student">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="Person_Trainer" Association="Self.Person_Trainer">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Trainer" EntitySet="Trainers" />
+          </AssociationSet>
+          <AssociationSet Name="Assignment_Mark1" Association="Self.Assignment_Mark1">
+            <End Role="Assignment" EntitySet="Assignments" />
+            <End Role="Mark" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="Course_Assignment" Association="Self.Course_Assignment">
+            <End Role="Assignment" EntitySet="Assignments" />
+            <End Role="Course" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="Student_Course" Association="Self.Student_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="Student_Payment1" Association="Self.Student_Payment1">
+            <End Role="Payment" EntitySet="Payments" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="Trainer_Course" Association="Self.Trainer_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Trainer" EntitySet="Trainers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PartBMainModelStoreContainer" CdmEntityContainer="PartBMain">
+          <EntitySetMapping Name="Assignments">
+            <EntityTypeMapping TypeName="PartBMainModel.Assignment">
+              <MappingFragment StoreEntitySet="Assignment">
+                <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+                <ScalarProperty Name="Submision_Date_Time" ColumnName="Submision Date Time" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="PartBMainModel.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="Start_Date" ColumnName="Start Date" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="End_Date" ColumnName="End Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HeadTrainers">
+            <EntityTypeMapping TypeName="PartBMainModel.HeadTrainer">
+              <MappingFragment StoreEntitySet="HeadTrainer">
+                <ScalarProperty Name="HeadTrainerID" ColumnName="HeadTrainerID" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="PrivateSchoolID" ColumnName="PrivateSchoolID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Managers">
+            <EntityTypeMapping TypeName="PartBMainModel.Manager">
+              <MappingFragment StoreEntitySet="Manager">
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="AnnualPayment" ColumnName="AnnualPayment" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marks">
+            <EntityTypeMapping TypeName="PartBMainModel.Mark">
+              <MappingFragment StoreEntitySet="Mark">
+                <ScalarProperty Name="MarkID" ColumnName="MarkID" />
+                <ScalarProperty Name="Oral_Mark" ColumnName="Oral Mark" />
+                <ScalarProperty Name="Write_Mark" ColumnName="Write Mark" />
+                <ScalarProperty Name="Total_Mark" ColumnName="Total Mark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="PartBMainModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Payment_Type" ColumnName="Payment Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentStatus">
+            <EntityTypeMapping TypeName="PartBMainModel.PaymentStatu">
+              <MappingFragment StoreEntitySet="PaymentStatus">
+                <ScalarProperty Name="PaymentStatusDescription" ColumnName="PaymentStatusDescription" />
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="PaymentIDCode" ColumnName="PaymentIDCode" />
+                <ScalarProperty Name="PaymentStatusCode" ColumnName="PaymentStatusCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="PartBMainModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Private_Schools">
+            <EntityTypeMapping TypeName="PartBMainModel.Private_School">
+              <MappingFragment StoreEntitySet="Private School">
+                <ScalarProperty Name="PrivateSchoolID" ColumnName="PrivateSchoolID" />
+                <ScalarProperty Name="Inventory" ColumnName="Inventory" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="Expenses" ColumnName="Expenses" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Streams">
+            <EntityTypeMapping TypeName="PartBMainModel.Stream">
+              <MappingFragment StoreEntitySet="Stream">
+                <ScalarProperty Name="Stream_Name" ColumnName="Stream Name" />
+                <ScalarProperty Name="Stream_Type" ColumnName="Stream Type" />
+                <ScalarProperty Name="StreamID" ColumnName="StreamID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="StreamCode" ColumnName="StreamCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="PartBMainModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="Tuition__Fees" ColumnName="Tuition  Fees" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="SignupNo" ColumnName="SignupNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trainers">
+            <EntityTypeMapping TypeName="PartBMainModel.Trainer">
+              <MappingFragment StoreEntitySet="Trainer">
+                <ScalarProperty Name="TrainerID" ColumnName="TrainerID" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="HeadTrainerID" ColumnName="HeadTrainerID" />
+                <ScalarProperty Name="PrivateSchoolID" ColumnName="PrivateSchoolID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Assignment_Mark1" TypeName="PartBMainModel.Assignment_Mark1" StoreEntitySet="Assignment_Mark1">
+            <EndProperty Name="Assignment">
+              <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+            </EndProperty>
+            <EndProperty Name="Mark">
+              <ScalarProperty Name="MarkID" ColumnName="MarkID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Course_Assignment" TypeName="PartBMainModel.Course_Assignment" StoreEntitySet="Course_Assignment">
+            <EndProperty Name="Assignment">
+              <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+            </EndProperty>
+            <EndProperty Name="Course">
+              <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Student_Course" TypeName="PartBMainModel.Student_Course" StoreEntitySet="Student_Course">
+            <EndProperty Name="Course">
+              <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+            </EndProperty>
+            <EndProperty Name="Student">
+              <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Student_Payment1" TypeName="PartBMainModel.Student_Payment1" StoreEntitySet="Student_Payment1">
+            <EndProperty Name="Payment">
+              <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+            </EndProperty>
+            <EndProperty Name="Student">
+              <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Trainer_Course" TypeName="PartBMainModel.Trainer_Course" StoreEntitySet="Trainer_Course">
+            <EndProperty Name="Course">
+              <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+            </EndProperty>
+            <EndProperty Name="Trainer">
+              <ScalarProperty Name="TrainerID" ColumnName="TrainerID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5ce501a004a84f6fba27a7da9c95e1d8" Name="Diagram1">
+        <EntityTypeShape EntityType="PartBMainModel.Assignment" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PartBMainModel.Course" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PartBMainModel.HeadTrainer" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PartBMainModel.Manager" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PartBMainModel.Mark" Width="1.5" PointX="6" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PartBMainModel.Payment" Width="1.5" PointX="3.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="PartBMainModel.PaymentStatu" Width="1.5" PointX="6" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="PartBMainModel.Person" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PartBMainModel.Private_School" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PartBMainModel.Stream" Width="1.5" PointX="8.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="PartBMainModel.Student" Width="1.5" PointX="6" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PartBMainModel.Trainer" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="PartBMainModel.Course_Stream" ManuallyRouted="false" />
+        <AssociationConnector Association="PartBMainModel.HeadTrainer_Trainer" ManuallyRouted="false" />
+        <AssociationConnector Association="PartBMainModel.Person_HeadTrainer" ManuallyRouted="false" />
+        <AssociationConnector Association="PartBMainModel.Private_School_HeadTrainer" ManuallyRouted="false" />
+        <AssociationConnector Association="PartBMainModel.Person_Manager" ManuallyRouted="false" />
+        <AssociationConnector Association="PartBMainModel.Payment_PaymentStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="PartBMainModel.Person_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="PartBMainModel.Person_Trainer" ManuallyRouted="false" />
+        <AssociationConnector Association="PartBMainModel.Assignment_Mark1" ManuallyRouted="false" />
+        <AssociationConnector Association="PartBMainModel.Course_Assignment" ManuallyRouted="false" />
+        <AssociationConnector Association="PartBMainModel.Student_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="PartBMainModel.Student_Payment1" ManuallyRouted="false" />
+        <AssociationConnector Association="PartBMainModel.Trainer_Course" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
